@@ -34,7 +34,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 // Initiallizing the app port 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.listen(PORT,()=>{
     console.log(`Server is Running at PORT ${PORT}`)
