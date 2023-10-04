@@ -1,21 +1,23 @@
-import express from 'express';
-import {
-  authUser,
-  registerUser,
-  logoutUser,
-  getUserProfile,
-  updateUserProfile,
-} from '../controllers/authController.js';
-import { protect } from '../middleware/auth.js';
-
+const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
+const {check,validationResult} = require('express-validator');
 
-router.post('/', registerUser);
-router.post('/auth', authUser);
-router.post('/logout', logoutUser);
-router
-  .route('/profile')
-  .get(protect, getUserProfile)
-  .put(protect, updateUserProfile);
+const authController = require("../controller/authController");
 
-export default router;
+
+
+//@route    GET api/auth
+//@desc     This route help us to get user from the token
+//@access   Private
+router.get("/",auth,authController.userDetails);
+
+//@route    Post api/auth
+//@desc     This route help us to login user Email and password
+//@access   Public
+router.post("/user",[ 
+    check('email','Please include a valid email').isEmail(),
+    check('password','Please enter a password with 6 or more characters').isLength({min:6})
+],authController.addUser);
+
+module.exports = router;

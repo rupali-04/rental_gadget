@@ -1,28 +1,20 @@
-import jwt from 'jsonwebtoken';
-import asyncHandler from 'express-async-handler';
-import User from '../User.js';
+const jwt = require('jsonwebtoken');
 
-const protect = asyncHandler(async (req, res, next) => {
-  let token;
-
-  token = req.cookies.jwt;
-
-  if (token) {
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      req.user = await User.findById(decoded.userId).select('-password');
-
-      next();
-    } catch (error) {
-      console.error(error);
-      res.status(401);
-      throw new Error('Not authorized, token failed');
+module.exports  = (req,res,next) => {
+    // Get the Token
+    const token = req.header('x-auth-token');
+    
+    // Check if not token
+    if(!token){
+        return res.status(401).json({msg:"Not Authorized......."});
     }
-  } else {
-    res.status(401);
-    throw new Error('Not authorized, no token');
-  }
-});
 
-export { protect };
+    // Verify Token
+    try{
+        const decode = jwt.verify(token,"jwtToken");
+        req.user = decode.user;
+        next();
+    }catch(err){
+        return res.status(401).json({msg:"Invaild Token....."});
+    }
+}
