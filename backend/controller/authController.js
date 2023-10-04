@@ -72,6 +72,7 @@ exports.registerUser = async (req,res)=>{
   user = new User({
       name,
       email,
+      role,
       password: ep
   })
 
