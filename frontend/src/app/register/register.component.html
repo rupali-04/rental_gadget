@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row m-5 no-gutters shadow-lg">
+    <div class="col-md-6 d-none d-md-block">
+      <img
+        src="https://images.unsplash.com/photo-1566888596782-c7f41cc184c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80"
+        class="img-fluid" style="min-height:100%;" />
+    </div>
+    <div class="col-md-6 bg-white p-5">
+      <h3 class="pb-3">Sign-up</h3>
+      <div class="form-style">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <div class="form-group pb-3">
+            <input type="text" class="form-control" placeholder="username" id="username" name="username"
+              [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && username.errors }" aria-describedby="Username">
+            <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+              <div *ngIf="username.errors['required']">Username is required</div>
+              <div *ngIf="username.errors['minlength']">
+                Username must be at least 3 characters
+              </div>
+              <div *ngIf="username.errors['maxlength']">
+                Username must be at most 20 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group pb-3">
+            <input type="email" class="form-control" placeholder="email address" id="email" name="email"
+              [(ngModel)]="form.email" required email #email="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && email.errors }">
+            <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+              <div *ngIf="email.errors['required']">Email is required</div>
+              <div *ngIf="email.errors['email']">
+                Email must be a valid email address
+              </div>
+            </div>
+          </div>
+          <div class="form-group pb-3">
+            <input type="password" class="form-control" placeholder="password" id="password" name="password"
+              [(ngModel)]="form.password" required minlength="6" #password="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && password.errors }">
+            <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+              <div *ngIf="password.errors['required']">Password is required</div>
+              <div *ngIf="password.errors['minlength']">
+                Password must be at least 6 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group pb-3">
+            <select class="form-control" name="Role" [(ngModel)]="form.role">
+              <option value="">Select Role</option>
+              <option value="renter">Renter</option>
+              <option value="rentee">Rentee</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="!form.role && f.submitted">
+              <div>Please Select a role to continue.</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center"><input name="" type="checkbox" value="" /> <span
+                class="pl-2 font-weight-bold">Remember Me</span></div>
+            <div><a href="#">Forget Password?</a></div>
+          </div>
+          <div class="pb-2">
+            <button type="submit" class="btn btn-dark w-100 font-weight-bold mt-2">Sign up</button>
+          </div>
+          <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Signup failed!<br />{{ errorMessage }}
+          </div>
+        </form>
+        <div class="sideline">OR</div>
+        <div class="pt-4 text-center">
+          Already a user?. <a href="/login" routerLink="login">Sign in</a>
+        </div>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          Your registration is successful!
+        </div>
+      </div>
+    </div>
+  </div>
