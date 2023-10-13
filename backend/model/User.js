@@ -18,9 +18,18 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    location: {
+    address: {
+        place: String,
+        city: String,
+        country: String,
+        pincode: {
+            type: Number,
+            min: 6
+        }
+    },
+    verificationStatus: {
         type: String,
-        required: true
+       
     },
     date:{
         type: Date,

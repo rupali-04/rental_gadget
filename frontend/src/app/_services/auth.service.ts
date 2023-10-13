@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { StorageService } from '../_services/storage.service';
 
 const AUTH_API = 'http://localhost:3000/api/auth/';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'x-auth-token': 'authToken',
-  }),
-};
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private storageServie: StorageService) {}
+  httpOptions: any = {}
 
   login(username: string, password: string, state: string): Observable<any> {
 
@@ -27,7 +24,12 @@ export class AuthService {
         state,
       },
 
-      httpOptions
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'x-auth-token': this.storageServie.getUser()
+        }),
+      }
     );
   }
 
@@ -35,6 +37,7 @@ export class AuthService {
     username: string,
     email: string,
     role: string,
+    location: string,
     password: string
   ): Observable<any> {
     return this.http.post(
@@ -43,13 +46,24 @@ export class AuthService {
         username,
         email,
         role,
+        location,
         password,
       },
-      httpOptions
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'x-auth-token': this.storageServie.getUser()
+        }),
+      }
     );
   }
 
   logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'logout', {}, httpOptions);
+    return this.http.post(AUTH_API + 'logout', {}, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-auth-token': this.storageServie.getUser()
+      }),
+    });
   }
 }

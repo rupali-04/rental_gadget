@@ -7,11 +7,14 @@ const ProductSchema = new mongoose.Schema({
     },
     description:{
         type: String,
-        required: true,
+        required: true
     },
     available:{
-        type: String,
+        type: Boolean,
         required: true
+    },
+    photoGalary:{
+        type: String
     },
     gadgetType:{
         type: String,
@@ -26,10 +29,17 @@ const ProductSchema = new mongoose.Schema({
         required: true
     },
     specification:{
+        type: String
+    },
+    serialNumber:{
         type: String,
         required: true
     },
-    serialNumber:{
+    toAvailableDate:{
+        type: String,
+        required: true
+    },
+    fromAvailableDate:{
         type: String,
         required: true
     },
@@ -45,9 +55,14 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    companyDetails: {
+    userDetails: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
+    },
+    discountCoupon: {
+        validationDate: String,
+        couponCode: String,
+        amount: Number
     },
     date:{
         type: Date,

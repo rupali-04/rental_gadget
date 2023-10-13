@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
+import { StorageService } from '../_services/storage.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,  private storageServie: StorageService) {}
 
   ngOnInit(): void {}
 
@@ -30,9 +31,11 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.authService.register(username, email, role, password).subscribe({
+    this.authService.register(username,email, role,"Anand", password).subscribe({
       next: (data) => {
         console.log(data);
+        // Add API Key to Session Storage
+        this.storageServie.saveUser(data.token);
         this.isSuccessful = true;
         this.isSignUpFailed = data.success === false;
       },
