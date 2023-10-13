@@ -36,12 +36,12 @@ const ProductSchema = new mongoose.Schema({
         required: true
     },
     toAvailableDate:{
-        type: String,
+        type: Date,
         required: true
     },
     fromAvailableDate:{
-        type: String,
-        required: true
+        type: Date,
+        default: Date.now
     },
     securityDeposit:{
         type: Number,

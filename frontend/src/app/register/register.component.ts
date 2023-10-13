@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
       this.isSignUpFailed = true;
       return;
     }
-
+    console.log(username,email,role,password);
     this.authService.register(username,email, role,"Anand", password).subscribe({
       next: (data) => {
         console.log(data);

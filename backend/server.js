@@ -23,6 +23,7 @@ app.use((req, res, next) => {
 // Define Routes
 //app.use('/api/users',require('./router/user'));
  app.use('/api/auth',require('./router/userRoutes'));
+ app.use('/api/product',require('./router/productRoutes'));
 // app.use('/api/characters',require('./router/character'));
 // app.use('/api/characters/report',require('./router/report'));
 //app.use('/api/relations',require('./routes/api/relation'));

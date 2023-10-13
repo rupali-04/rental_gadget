@@ -74,11 +74,13 @@ exports.registerUser = async (req,res)=>{
       name: username,
       email,
       role,
-      location,
+      address: {
+        city: location
+      },
       password: ep
   })
 
-  await user.save();
+ const u = await user.save();
 //   if(role.toUpperCase() == "COMPANY"){
 //     var company = {
 //         companyName: "Company Dem",
@@ -100,7 +102,7 @@ exports.registerUser = async (req,res)=>{
       if(err){
           throw err
       }else{
-          res.json({token:token})
+          res.json({token:token,user: u})
       }
   });
 
