@@ -2,6 +2,7 @@ const User = require('../model/User');
 const jwt = require('jsonwebtoken');
 const {check,validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
+const Company = require('../model/Company');
 
 exports.userDetails = async (req,res)=>{
     try{
@@ -14,7 +15,7 @@ exports.userDetails = async (req,res)=>{
     }
 }
 
-exports.addUser = async (req,res)=>{
+exports.authUser = async (req,res)=>{
     try{
         const errors = validationResult(req);
         if(!errors.isEmpty()){
@@ -59,7 +60,7 @@ exports.registerUser = async (req,res)=>{
 
   }
       
-  const {name,email,password,role} = req.body;
+  const {name,email,password,role,location} = req.body;
 
   let user = await User.findOne({email /*email:email*/});
   if(user){
@@ -73,10 +74,22 @@ exports.registerUser = async (req,res)=>{
       name,
       email,
       role,
+      location,
       password: ep
   })
 
   await user.save();
+  if(role.toUpperCase() == "COMPANY"){
+    var company = {
+        companyName: "Company Dem",
+        companyDescription: "This Company is a renter which has many Gadgets to Rent.",
+        userId: user.id,
+        verificationStatus: false,
+        productList: []
+    }
+    company = new Company(company);
+    await company.save();
+}
 
   const payload = {
       user:{

@@ -18,7 +18,7 @@ router.get("/",auth,authController.userDetails);
 router.post("/user",[ 
     check('email','Please include a valid email').isEmail(),
     check('password','Please enter a password with 6 or more characters').isLength({min:6})
-],authController.addUser);
+],authController.authUser);
 
 router.post("/register",[
   check('email','Please include a valid email').isEmail(),
