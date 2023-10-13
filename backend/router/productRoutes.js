@@ -11,6 +11,11 @@ const productController = require("../controller/productController");
 //@access   Private
 router.get("/",auth,productController.viewProducts);
 
+//@route    GET api/product/view/all
+//@desc     This route help us to get product. 
+//@access   Private
+router.get("/view/all",auth,productController.viewDashboardProduct);
+
 
 //@route    POST api/product/add
 //@desc     This route help us to get Insert Product in the system by user with role Company 

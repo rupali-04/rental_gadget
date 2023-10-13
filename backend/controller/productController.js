@@ -66,3 +66,14 @@ exports.viewProducts = async (req,res) => {
         res.status(500).json("Server Error!!");
     }
 }
+
+exports.viewDashboardProduct = async (req,res) => {
+    try{
+        const user = await User.findById(req.user.id).select("-password");
+        const product = await Products.find({userDetails: user._id});
+        res.json(product);
+    }catch(err){
+        console.log(err.message);
+        res.status(500).json("Server Error!!");
+    }
+}
