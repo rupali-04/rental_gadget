@@ -59,11 +59,9 @@ const ProductSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    discountCoupon: {
-        validationDate: String,
-        couponCode: String,
-        amount: Number
-    },
+    discountCode:[{
+        type: mongoose.Schema.Types.ObjectId
+    }],
     date:{
         type: Date,
         default: Date.now

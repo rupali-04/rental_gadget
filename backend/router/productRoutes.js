@@ -22,6 +22,29 @@ router.get("/view/all",auth,productController.viewDashboardProduct);
 //@access   Private
 router.post("/add",auth,productController.addProduct);
 
+
+
+
+//@route    POST api/product/coupon
+//@desc     This route help us to create Coupon for users
+//@access   Private
+router.post("/coupon",auth,productController.addCoupon);
+
+
+//@route    PUT api/product/add/coupon/:id
+//@desc     This route help us to add Coupoun in Product
+//@access   Private
+router.put("/add/coupon/:id",auth,productController.addCouponInProduct);
+
+
+
+//@route    PUT api/product/add/coupons
+//@desc     This route help us to add Coupoun in all Product
+//@access   Private
+router.put("/add/coupons/",auth,productController.addCouponAllProduct);
+
+
+
 //@route    Put api/product/update/:id
 //@desc     This route help us to get Update Product in the system by product id 
 //@access   Private
