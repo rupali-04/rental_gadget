@@ -17,13 +17,19 @@ exports.addProduct = async (req,res)=>{
             gadgetModel,
             specification,
             serialNumber,
+            gadgetLocation,
             // toAvailableDate,
             // fromAvailableDate,
             securityDeposit,
             rentalRate,
           //  discountCoupon
          } = req.body;
+         const currentDate = new Date();
+         const nextMonth = new Date(currentDate);
 
+         // Add one to the current month
+        
+const toDate =  nextMonth.setMonth(currentDate.getMonth() + 1);
         const product = new Products({
             title,
             description,
@@ -33,13 +39,11 @@ exports.addProduct = async (req,res)=>{
             gadgetModel,
             specification,
             serialNumber,
-            toAvailableDate,
-            fromAvailableDate,
+            toAvailableDate: toDate, // Add one to the current month
             securityDeposit,
             rentalRate,
-            gadgetLocation: user.address.city,
+            gadgetLocation,
             userDetails: user._id,
-            discountCoupon
         });
         
         await product.save();
@@ -54,8 +58,22 @@ exports.addProduct = async (req,res)=>{
 
 exports.viewProducts = async (req,res) => {
     try{
-        
+        const user = await User.findById(req.user.id).select("-password");
+        const product = await Products.find({gadgetLocation: user.address.city});
+        res.json(product);
     }catch(err){
+        console.log(err.message);
+        res.status(500).json("Server Error!!");
+    }
+}
 
+exports.viewDashboardProduct = async (req,res) => {
+    try{
+        const user = await User.findById(req.user.id).select("-password");
+        const product = await Products.find({userDetails: user._id});
+        res.json(product);
+    }catch(err){
+        console.log(err.message);
+        res.status(500).json("Server Error!!");
     }
 }
