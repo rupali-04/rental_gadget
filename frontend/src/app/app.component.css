@@ -1,0 +1,126 @@
+header {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.7rem 9%;
+  height: 5rem;
+  background-color: #000;
+  box-shadow: 0 3px 10px #000;
+}
+
+.heading {
+  font-size: 2rem;
+  color: rgb(32, 32, 32);
+  font-weight: 800;
+  text-align: center;
+}
+
+.heading span {
+  color: rgb(32, 32, 32);
+}
+
+header .logo {
+  font-size: 2.3rem;
+  font-weight: 800;
+  font-family: "Tourney", cursive;
+  text-decoration: none;
+  color: #fff;
+}
+
+header .logo:hover {
+  color: rgb(32, 32, 32);
+}
+
+header .navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .navbar li {
+  margin-left: 2.5rem;
+}
+
+header .navbar ul li a {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.04rem;
+  transition: 0.3s;
+}
+
+header .navbar ul li a.active,
+header .navbar ul li a:hover {
+  border: 0.2rem solid #fff;
+  padding: 0.5rem 1rem;
+}
+
+/* navbar ends */
+
+/* hamburger icon starts*/
+#menu {
+  font-size: 3rem;
+  cursor: pointer;
+  color: #fff;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #menu {
+    display: block;
+  }
+
+  header .navbar {
+    position: fixed;
+    top: 6.5rem;
+    right: -120%;
+    width: 75%;
+    height: 100%;
+    text-align: left;
+    align-items: flex-start;
+    background-color: rgb(32, 32, 32);
+  }
+
+  header .navbar ul {
+    flex-flow: column;
+    padding: 1rem;
+  }
+
+  header .navbar ul li {
+    text-align: center;
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 0rem;
+    width: 26rem;
+  }
+
+  header .navbar ul li a {
+    display: block;
+    padding: 1rem 0;
+    text-align: left;
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  header .navbar ul li a.active,
+  header .navbar ul li a:hover {
+    padding: 1rem 3rem;
+    color: #fff;
+    border: 0.1rem solid #fff;
+  }
+
+  .fa-times {
+    transform: rotate(180deg);
+  }
+
+  header .navbar.nav-toggle {
+    right: 0;
+  }
+}

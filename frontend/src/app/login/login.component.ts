@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   form: any = {
     username: null,
     password: null,
-    state: null,
+    location: null,
   };
 
   isLoggedIn: boolean = false;
@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  console.log(this.storageServie.getUser());
-    if (this.storageServie.getUser() !=  null) {
+    console.log(this.storageServie.getUser());
+    if (this.storageServie.getUser() != null) {
       this.isLoggedIn = true;
       this.roles = this.storageServie.getUser().roles;
     }
@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, password, state } = this.form;
+    const { username, password, location } = this.form;
 
-    this.authService.login(username, password, state).subscribe({
+    this.authService.login(username, password, location).subscribe({
       next: (data) => {
         this.storageServie.saveUser(data);
 
