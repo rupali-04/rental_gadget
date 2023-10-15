@@ -11,10 +11,10 @@
           <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
         </li>
         <li class="nav-item" *ngIf="showRenterBoard">
-          <a href="/renter" class="nav-link" routerLink="renter">Renter Board</a>
+          <a href="/renter" class="nav-link" routerLink="renter">Market Place</a>
         </li>
-        <li class="nav-item">
-          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a href="/user" class="nav-link" routerLink="user">User</a>
         </li>
       </ul>
 

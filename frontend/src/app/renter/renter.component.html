@@ -1,0 +1,261 @@
+<div class="container">
+  <div class="mt-5" style="text-align: right;">
+    <select name="location">
+      <option value="ahmedabad">Ahmedabad</option>
+      <option value="mumbai">Mumbai</option>
+      <option value="banglore">Banglore</option>
+    </select>
+  </div>
+
+  <h2>Add Product</h2>
+  <div class="sideline"></div>
+  <div class="container-fluid">
+    <form name="form">
+      <div class="form-group">
+        <div class="row row-cols col-md-12 row-cols-lg g-3 g-lg-3">
+          <div class="col-md-3 p-3">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" [(ngModel)]="addProduct.title"
+              aria-describedby="Title" required>
+            <div class="invalid-feedback">
+              <div>Title is required</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description"
+              [(ngModel)]="addProduct.description" aria-describedby="Description" required>
+            <div class="invalid-feedback">
+              <div>Title is required</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="type">Gadget Type</label>
+            <input type="text" class="form-control" id="type" name="model" [(ngModel)]="addProduct.gadgetType"
+              aria-describedby="Gadget Type" required>
+            <div class="invalid-feedback">
+              <div>Gadget Type is required</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" id="brand" name="brand" [(ngModel)]="addProduct.brand"
+              aria-describedby="Brand" required>
+            <div class="invalid-feedback">
+              <div>Brand is required</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="model">Gadget Model</label>
+            <input type="text" class="form-control" id="model" name="model" [(ngModel)]="addProduct.gadgetModel"
+              aria-describedby="Brand" required>
+            <div class="invalid-feedback">
+              <div>Gadget Model is required</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="specification">Specification</label>
+            <input type="text" class="form-control" id="specification" name="specification"
+              [(ngModel)]="addProduct.specification" aria-describedby="Specification" required>
+            <div class="invalid-feedback">
+              <div>Specification is required</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="serialNumber">Serial Number</label>
+            <input type="text" class="form-control" id="serialNumber" name="serialNumber"
+              [(ngModel)]="addProduct.serialNumber" aria-describedby="Serial Number" required>
+            <div class="invalid-feedback">
+              <div>Serial Number is required</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="deposit">Security Deposit</label>
+            <input type="text" class="form-control" id="deposit" name="deposit" [(ngModel)]="addProduct.securityDeposit"
+              aria-describedby="Security Deposit" required>
+            <div class="invalid-feedback">
+              <div>Security Deposit</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="rentalRate">Rental Rate</label>
+            <input type="text" class="form-control" id="rentalRate" name="rentalRate"
+              [(ngModel)]="addProduct.rentalRate" aria-describedby="Rental Rate" required>
+            <div class="invalid-feedback">
+              <div>Rental Rate</div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3">
+            <label for="location">Select Location</label>
+            <select name="SelectLocation" class="form-control" id="location" name="Location"
+              [(ngModel)]="addProduct.gadgetLocation">
+              <option value="ahmedabad">Ahmedabad</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="banglore">Banglore</option>
+            </select>
+            <div class="invalid-feedback">
+              <div>Please select a Location.</div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-cols col-md-3 row-cols-lg g-3 g-lg-3">
+          <div class="col-md-12 pb-2">
+            <button type="submit" class="btn btn-dark w-100 font-weight-bold mt-2">Add Product</button>
+          </div>
+          <div class="col-md-12 pb-2">
+            <div class="alert alert-warning">
+              Product creation failed!<br />{{ errorMessage }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <h2>List of Product</h2>
+  <div class="sideline"></div>
+  <table class="table table-responsive table-bordered table-hover mt-3">
+    <thead>
+      <tr>
+        <th class="col-md-1">
+          Product_ID
+        </th>
+        <th class="col-md-6">
+          Product Details
+        </th>
+        <th class="col-md-2">
+          Security Deposit
+        </th>
+        <th class="col-md-2">
+          Rental Rate
+        </th>
+        <th class="col-md-1">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ID</td>
+        <td class="col-md-6">
+          <div class="row d-flex justify-content-center">
+            <div class="col">
+              <div class="row">
+                <div class="col mt-1" style="max-width: 11rem;">
+                  <div class="product-imgs" style="width: 9rem;">
+                    <div class="img-display" style="border: 1px solid darkgrey;">
+                      <div class="img-showcase" id="Product_ID">
+                        <img src="PrimaryImage" alt="shoe image">
+                        <img src="SecondaryImage1" alt="shoe image">
+                        <img src="SecondaryImage2" alt="shoe image">
+                      </div>
+                    </div>
+                    <div class="img-select">
+                      <div class="img-item" style="margin:5px;border: 1px solid darkgrey;">
+                        <a href="#" data-id="Product_ID">
+                          <img src="PrimaryImage" alt="show image">
+                        </a>
+                      </div>
+                      <div class="img-item" style="margin:5px;border: 1px solid darkgrey;">
+                        <a href="#" data-id="Product_ID">
+                          <img src="SecondaryImage1" alt="show image">
+                        </a>
+                      </div>
+                      <div class="img-item" style="margin:5px;border: 1px solid darkgrey;">
+                        <a href="#" data-id="Product_ID">
+                          <img src="SecondaryImage2" alt="show image">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mt-1">
+                  <h6>Title</h6>
+                  <div class="mt-1 mb-1 spec-1">
+                    <span>Description</span> <br />
+                    <span>GadgetType</span> - <span>Brand</span><br />
+                    <span>Specification</span><br />
+                    <span>GadgetModel</span><br />
+                    <span>serialNumber</span><br />
+                    <span>GadgetLocation</span>
+                  </div>
+                </div>
+                <div class="row p-2 d-flex justify-content-end">
+                  <div class="col-md-3">
+                    <button type="button" class="btn btn-success w-100 font-weight-bold mt-2">Add Coupon</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="col-md-2">
+          <div class="row p-2 d-flex justify-content-center">
+            <div class="h6 text-uppercase font-weight-light">
+              Security Deposit
+            </div>
+          </div>
+        </td>
+        <td class="col-md-2">
+          <div class="row p-2 d-flex justify-content-center">
+            <div class="h6 text-uppercase font-weight-light">
+              Rental Rate
+            </div>
+          </div>
+        </td>
+        <td class="col-md-1">
+          <div class="row p-2 d-flex justify-content-center">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary w-100 font-weight-bold mt-2">Edit</button>
+            </div>
+            <div class="col-md-12">
+              <button type="button" class="btn btn-danger w-100 font-weight-bold mt-2">Delete</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+
+  const imgs = document.querySelectorAll('.img-select a');
+  const imgBtns = [...imgs];
+  let imgId = 1;
+
+  imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+      event.preventDefault();
+      imgId = imgItem.dataset.id;
+      slideImage();
+    });
+  });
+
+  function slideImage() {
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+  }
+
+  window.addEventListener('resize', slideImage);
+
+
+  $(document).ready(function () {
+    $('.minus').click(function () {
+      var $input = $(this).parent().find('input');
+      var count = parseInt($input.val()) - 1;
+      count = count < 1 ? 1 : count;
+      $input.val(count);
+      $input.change();
+      return false;
+    });
+    $('.plus').click(function () {
+      var $input = $(this).parent().find('input');
+      $input.val(parseInt($input.val()) + 1);
+      $input.change();
+      return false;
+    });
+  });
+
+</script>

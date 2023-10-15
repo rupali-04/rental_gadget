@@ -12,8 +12,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { RenterComponent } from './renter/renter.component';
 import { RenteeComponent } from './rentee/rentee.component';
 import { AdminComponent } from './admin/admin.component';
-
 import { httpInterceptorProviders } from './_helpers/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,13 @@ import { httpInterceptorProviders } from './_helpers/auth.interceptor';
     RenteeComponent,
     AdminComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+  ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
