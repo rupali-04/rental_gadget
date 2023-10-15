@@ -13,12 +13,12 @@
         <li class="nav-item" *ngIf="showRenterBoard">
           <a href="/renter" class="nav-link" routerLink="renter">Market Place</a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
+        <li class="nav-item" *ngIf="status">
           <a href="/user" class="nav-link" routerLink="user">User</a>
         </li>
       </ul>
 
-      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <ul class="navbar-nav ml-auto" *ngIf="!status">
         <li class="nav-item">
           <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
         </li>
@@ -27,7 +27,7 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <ul class="navbar-nav ml-auto" *ngIf="status">
         <li class="nav-item">
           <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
         </li>

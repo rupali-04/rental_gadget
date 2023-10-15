@@ -13,6 +13,8 @@ export class AuthService {
     private http: HttpClient,
     private storageServie: StorageService
   ) {}
+
+  isLoggedIn = false;
   httpOptions: any = {};
 
   login(username: string, password: string, location: string): Observable<any> {
@@ -52,7 +54,7 @@ export class AuthService {
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-         // 'x-auth-token': this.storageServie.getUser()
+          // 'x-auth-token': this.storageServie.getUser()
         }),
       }
     );

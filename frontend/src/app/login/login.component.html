@@ -8,7 +8,7 @@
     <div class="col-md-6 bg-white p-5">
       <h3 class="pb-3">Sign In</h3>
       <div class="form-style">
-        <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <form *ngIf="!status" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
           <div class="form-group pb-3">
             <input type="text" class="form-control" placeholder="username" id="username" name="username"
               [(ngModel)]="form.username" required #username="ngModel"
@@ -57,7 +57,7 @@
           Don't have an account? <a routerLink="/register" routerLinkActive="active">Sign Up</a>
         </div>
       </div>
-      <div class="alert alert-success" *ngIf="isLoggedIn">
+      <div class="alert alert-success" *ngIf="status">
         Logged in as {{ roles }}.
       </div>
     </div>

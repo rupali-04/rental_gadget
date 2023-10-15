@@ -13,8 +13,7 @@ export class LoginComponent implements OnInit {
     password: null,
     location: null,
   };
-
-  isLoggedIn: boolean = false;
+  status = this.authService.isLoggedIn;
   isLoginFailed: boolean = false;
   errorMessage: string = '';
   roles: string[] = [];
@@ -27,10 +26,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.storageServie.getUser());
     if (this.storageServie.getUser() != null) {
-      this.isLoggedIn = true;
+      this.authService.isLoggedIn = true;
       this.roles = this.storageServie.getUser().roles;
     }
-    console.log('isLoggedIn', this.isLoggedIn);
+    console.log('isLoggedIn', this.authService.isLoggedIn);
   }
 
   onSubmit(): void {
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
       next: (data) => {
         this.storageServie.saveUser(data);
 
-        this.isLoggedIn = true;
+        this.authService.isLoggedIn = true;
         this.isLoginFailed = false;
         this.roles = this.storageServie.getUser().roles;
         this.reloadPage();
