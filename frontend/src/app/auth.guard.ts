@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
-  CanActivateFn,
-  CanActivateChildFn,
-  CanDeactivateFn,
-  CanMatchFn,
+  CanActivate,
+  CanActivateChild,
+  CanDeactivate,
   Router,
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
@@ -17,13 +16,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard
-  implements
-    CanActivateFn,
-    CanActivateChildFn,
-    CanDeactivateFn<unknown>,
-    CanMatchFn
-{
+// CanActivateChild,
+// CanDeactivate
+export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -37,46 +32,17 @@ export class AuthGuard
     let url: string = state.url;
     return this.checkUserLogin(next, url);
   }
-  canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return this.canActivate(next, state);
-  }
-  canDeactivate(
-    component: unknown,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return true;
-  }
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
-  }
-
   checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.IsLoggedIn()) {
       const userRole = this.authService.getRole();
-      if (route.data.role && route.data.role.indexOf(userRole) === -1) {
-        this.router.navigate(['/home']);
+      if (route.data['role'] && route.data['role'].indexOf(userRole) === -1) {
+        this.router.navigate(['/renter']);
         return false;
       }
       return true;
     }
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/renter']);
     return false;
   }
 }

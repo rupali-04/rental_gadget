@@ -10,7 +10,7 @@ const AUTH_API = 'http://localhost:3000/api/auth/';
 })
 export class AuthService {
   isLogin: boolean = false;
-  role: string = '';
+  roleAs: string = '';
   isLoggedIn = false;
   httpOptions: any = {};
 
@@ -40,17 +40,12 @@ export class AuthService {
 
   Auth(): Observable<any> {
     this.isLogin = true;
-    return this.http.get(
-      AUTH_API,
-      
-
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-            'x-auth-token': this.storageServie.getUser(),
-        }),
-      }
-    );
+    return this.http.get(AUTH_API, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-auth-token': this.storageServie.getUser(),
+      }),
+    });
   }
 
   register(
@@ -60,7 +55,7 @@ export class AuthService {
     location: string,
     password: string
   ): Observable<any> {
-    this.role = role;
+    this.roleAs = role;
 
     return this.http.post(
       AUTH_API + 'register',
@@ -81,6 +76,10 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
+    this.isLogin = false;
+    this.roleAs = '';
+    localStorage.setItem('STATE', 'false');
+    localStorage.setItem('ROLE', '');
     return this.http.post(
       AUTH_API + 'logout',
       {},
@@ -91,5 +90,20 @@ export class AuthService {
         }),
       }
     );
+  }
+
+  IsLoggedIn() {
+    const loggedIn = localStorage.getItem('STATE');
+    if (loggedIn === 'true') {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
+    return this.isLogin;
+  }
+
+  getRole() {
+    this.roleAs = localStorage.getItem('ROLE') || '';
+    return this.roleAs;
   }
 }
