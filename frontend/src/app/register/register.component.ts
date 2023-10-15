@@ -24,7 +24,9 @@ export class RegisterComponent implements OnInit {
     private storageServie: StorageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+   
+  }
 
   onSubmit(): void {
     const { username, email, role, location, password } = this.form;
