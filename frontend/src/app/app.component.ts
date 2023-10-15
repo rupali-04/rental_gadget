@@ -26,8 +26,8 @@ export class AppComponent {
       const user = this.storageService.getUser();
       this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showRenterBoard = this.roles.includes('ROLE_RENTER');
+      this.showAdminBoard = this.roles.includes('Admin');
+      this.showRenterBoard = this.roles.includes('Renter');
 
       this.username = user.username;
     }

@@ -27,3 +27,53 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-thumb {
   background: #fff;
 }
+
+.container {
+  max-width: 95%;
+  padding: 0 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 5px;
+  }
+}
+
+.container-fluid {
+  width: 80%;
+  padding: 20px;
+  /* Adjust the padding as needed */
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Media query for adjusting padding on smaller screens */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 10px;
+  }
+}
+
+/* Media query for even smaller screens */
+@media (max-width: 480px) {
+  .container-fluid {
+    padding: 5px;
+  }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

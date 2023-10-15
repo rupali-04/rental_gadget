@@ -8,24 +8,23 @@ import { StorageService } from '../_services/storage.service';
   styleUrls: ['./renter.component.css'],
 })
 export class RenterComponent implements OnInit {
-  form: any = {
+  addProduct: any = {
     title: null,
     description: null,
-    available: null,
-    photoGalary: null,
     gadgetType: null,
     brand: null,
     gadgetModel: null,
     specification: null,
     serialNumber: null,
-    fromAvailableDate: null,
-    toAvailableDate: null,
     securityDeposit: null,
     rentalRate: null,
     gadgetLocation: null,
-    userDetails: null,
-    discountCoupon: null,
-    date: Date.now(),
+  };
+
+  addCoupon: any = {
+    couponCode: null,
+    discount: null,
+    expiryDate: null,
   };
 
   errorMessage: string = '';
