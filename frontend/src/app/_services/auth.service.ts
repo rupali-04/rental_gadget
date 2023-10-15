@@ -9,15 +9,18 @@ const AUTH_API = 'http://localhost:3000/api/auth/';
   providedIn: 'root',
 })
 export class AuthService {
+  isLogin: boolean = false;
+  role: string = '';
+  isLoggedIn = false;
+  httpOptions: any = {};
+
   constructor(
     private http: HttpClient,
     private storageServie: StorageService
   ) {}
 
-  isLoggedIn = false;
-  httpOptions: any = {};
-
   login(username: string, password: string, location: string): Observable<any> {
+    this.isLogin = true;
     return this.http.post(
       AUTH_API + 'user',
       {
@@ -29,7 +32,22 @@ export class AuthService {
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-        //  'x-auth-token': this.storageServie.getUser(),
+          //  'x-auth-token': this.storageServie.getUser(),
+        }),
+      }
+    );
+  }
+
+  AuthService(): Observable<any> {
+    this.isLogin = true;
+    return this.http.post(
+      AUTH_API + 'user',
+      {},
+
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          //  'x-auth-token': this.storageServie.getUser(),
         }),
       }
     );
@@ -42,6 +60,8 @@ export class AuthService {
     location: string,
     password: string
   ): Observable<any> {
+    this.role = role;
+
     return this.http.post(
       AUTH_API + 'register',
       {
