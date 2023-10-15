@@ -9,7 +9,7 @@ import { AuthService } from './_services/auth.service';
 })
 export class AppComponent {
   private roles: string[] = [];
-  isLoggedIn = false;
+  status = this.authService.isLoggedIn;
   showAdminBoard = false;
   showRenterBoard = false;
   username?: string;
@@ -20,9 +20,9 @@ export class AppComponent {
   ) {}
 
   ngOninit(): void {
-    this.isLoggedIn = this.storageService.isLoggedIn();
+    this.authService.isLoggedIn = this.storageService.isLoggedIn();
 
-    if (this.isLoggedIn) {
+    if (this.authService.isLoggedIn) {
       const user = this.storageService.getUser();
       this.roles = user.roles;
 
