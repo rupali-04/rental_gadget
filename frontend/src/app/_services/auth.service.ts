@@ -38,16 +38,16 @@ export class AuthService {
     );
   }
 
-  AuthService(): Observable<any> {
+  Auth(): Observable<any> {
     this.isLogin = true;
-    return this.http.post(
-      AUTH_API + 'user',
-      {},
+    return this.http.get(
+      AUTH_API,
+      
 
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          //  'x-auth-token': this.storageServie.getUser(),
+            'x-auth-token': this.storageServie.getUser(),
         }),
       }
     );
@@ -87,7 +87,7 @@ export class AuthService {
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'x-auth-token': this.storageServie.getUser(),
+          //'x-auth-token': this.storageServie.getUser(),
         }),
       }
     );

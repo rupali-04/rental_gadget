@@ -50,6 +50,11 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       },
     });
+    this.authService.Auth().subscribe({
+      next: (data) =>{
+        this.storageServie.saveRole(data.role);
+      }
+    })
   }
 
   reloadPage(): void {
