@@ -19,7 +19,7 @@ export class AuthService {
     return this.http.post(
       AUTH_API + 'user',
       {
-        username,
+        email: username,
         password,
         location,
       },
@@ -27,7 +27,7 @@ export class AuthService {
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'x-auth-token': this.storageServie.getUser(),
+        //  'x-auth-token': this.storageServie.getUser(),
         }),
       }
     );

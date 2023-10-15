@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const {check,validationResult} = require('express-validator');
-
+const {checkObjectId} = require('../middleware/checkObjectId')
 const productController = require("../controller/productController");
 
 
@@ -51,7 +51,7 @@ router.put("/add/pickup/",auth,productController.addPickUp);
 // @desc      Upload photo for Product
 // @route     PUT /api/product/:id/photo
 // @access    Private
-router.put('/:id/photo',[auth,checkObjectId('id')],productController.uploadPhotos);
+router.put('/:id/photo',auth,productController.uploadPhotos);
 
 
 //@route    Put api/product/update/:id
