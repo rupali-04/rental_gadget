@@ -16,16 +16,22 @@ const UserSchema = new mongoose.Schema({
     },
     role:{
         type: String,
+        enum: ['rentee', 'renter'],
         required: true
     },
     address: {
         place: String,
         city: String,
         country: String,
+        state: String,
         pincode: {
             type: Number,
             min: 6
         }
+    },
+    currentLocation: {
+        type: String,
+        require: true
     },
     verificationStatus: {
         type: String,

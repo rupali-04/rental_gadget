@@ -1,6 +1,6 @@
 const express = require('express'); // Express 
 const cors = require('cors');
-//var fileupload = require("express-fileupload");
+var fileupload = require("express-fileupload");
 
 require("./db/database");
 
@@ -13,7 +13,7 @@ const app = express();
 
 // middleware body parser
 app.use(express.json({extended:false}))
-//app.use(fileupload());
+app.use(fileupload());
 app.use(cors( {origin: 'http://localhost:4200/',credentials: true}));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

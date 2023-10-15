@@ -13,8 +13,9 @@ const ProductSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    photoGalary:{
-        type: String
+    photoGallary: {
+        type: Array,
+        required: true
     },
     gadgetType:{
         type: String,
@@ -62,6 +63,10 @@ const ProductSchema = new mongoose.Schema({
     discountCode:[{
         type: mongoose.Schema.Types.ObjectId
     }],
+    isObssolete:{
+        type: Boolean,
+        default: false
+    },
     date:{
         type: Date,
         default: Date.now

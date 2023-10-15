@@ -43,6 +43,15 @@ router.put("/add/coupon/:id",auth,productController.addCouponInProduct);
 //@access   Private
 router.put("/add/coupons/",auth,productController.addCouponAllProduct);
 
+//@route    PUT api/product/add/pickup
+//@desc     This route help us to add Pickup Address in user
+//@access   Private
+router.put("/add/pickup/",auth,productController.addPickUp);
+
+// @desc      Upload photo for Product
+// @route     PUT /api/product/:id/photo
+// @access    Private
+router.put('/:id/photo',[auth,checkObjectId('id')],productController.uploadPhotos);
 
 
 //@route    Put api/product/update/:id
@@ -51,9 +60,10 @@ router.put("/add/coupons/",auth,productController.addCouponAllProduct);
 //router.put("/update/:id",auth,productController.updateProduct);
 
 //@route Delete api/product/delete/:id
-//@desc     This route help us to get Product Obsolete or Delete (You can pause the product or delete it completely) in the system by product id 
+//@desc     This route help us to get Product Obsolete 
 //@access   Private
-//router.delete("/delete/:id",auth,productController.deleteProduct);
+
+router.delete("/delete/:id",auth,productController.pauseProduct);
 
 
 module.exports = router;

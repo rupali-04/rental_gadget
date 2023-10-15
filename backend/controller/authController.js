@@ -15,6 +15,7 @@ exports.userDetails = async (req,res)=>{
     }
 }
 
+// login
 exports.authUser = async (req,res)=>{
     try{
         const errors = validationResult(req);
@@ -22,7 +23,7 @@ exports.authUser = async (req,res)=>{
             return res.status(400).json({errors: errors.array()});
 
         }
-        const {email,password} = req.body;
+        const {email,password,location} = req.body;
         let user = await User.findOne({email /*email:email*/});
         if(!user){
             return res.status(400).json({error:[{msg: "Invalid credentials......"}]});
@@ -32,6 +33,8 @@ exports.authUser = async (req,res)=>{
             return res.status(401).json({msg:"Invalid credentials"})
         }
 
+        user.currentLocation= location;
+        await user.save();
         const payload = {
             user:{
                 id: user.id
@@ -74,9 +77,7 @@ exports.registerUser = async (req,res)=>{
       name: username,
       email,
       role,
-      address: {
-        city: location
-      },
+      currentLocation: location,
       password: ep
   })
 
@@ -112,3 +113,7 @@ exports.registerUser = async (req,res)=>{
   }
   
 };
+
+
+// update currentlocation
+
